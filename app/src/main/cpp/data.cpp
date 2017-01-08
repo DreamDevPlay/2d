@@ -27,6 +27,11 @@ bool Point::operator ==(const Point &other)
     return (x==other.x) && (y==other.y);
 }
 
+bool Point::infinite()
+{
+    return (x == std::numeric_limits<double>::infinity()) || (y == std::numeric_limits<double>::infinity());
+}
+
 Point Point::operator*(double value) const
 {
     return Point(x*value, y*value);
@@ -206,6 +211,19 @@ bool lineIntersect(const Line &one, const Line &two)
         return det (A1, C1, A2, C2) == 0 && det (B1, C1, B2, C2) == 0
                 && intersect_1 (one.begin.x, one.end.x, two.begin.x, two.end.x)
                 && intersect_1 (one.begin.y, one.end.y, two.begin.y, two.end.y);
+}
+
+Point lineIntersectPoint(const Line &one, const Line &two)
+{
+    Point p(std::numeric_limits<double>::infinity(), std::numeric_limits<double>::infinity());
+    double A1 = one.begin.y-one.end.y,  B1 = one.end.x-one.begin.x,  C1 = -A1*one.begin.x - B1*one.begin.y;
+    double A2 = two.begin.y-two.end.y,  B2 = two.end.x-two.begin.x,  C2 = -A2*two.begin.x - B2*two.begin.y;
+    double zn = det (A1, B1, A2, B2);
+    if (zn != 0) {
+        p.x = - det (C1, B1, C2, B2) * 1. / zn;
+        p.y = - det (A1, C1, A2, C2) * 1. / zn;
+    }
+    return p;
 }
 
 

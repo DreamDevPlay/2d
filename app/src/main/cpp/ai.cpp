@@ -20,6 +20,11 @@ bool linesIntersect(const Line &line, const std::vector<Line>& lines)
 void AI::nextStep(const Circle &player, std::vector<Circle> &ai, /*const*/ std::vector<Line>& lines)
 {
     std::sort(ai.begin(), ai.end(), player);
+//    Line l1(Point(1,1), Point(4,1));
+//    Line l2(Point(1,-1), Point(4,-1));
+//    bool intersect;
+//    Point p = lineIntersect(l1,l2,intersect);
+//    debug() << intersect << p.x << p.y << p.infinite();
 
 //    qDebug() << ai.size();
     int i = 0;

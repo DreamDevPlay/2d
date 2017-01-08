@@ -4,6 +4,7 @@
 
 #include "vector"
 #include "string"
+#include "limits"
 #include "stdlib.h"
 #include "iostream"
 #include "fstream"
@@ -22,6 +23,7 @@ struct Point
     void operator +=(const Point& other);
     bool operator ==(const double value);
     bool operator ==(const Point &other);
+    bool infinite();
 };
 
 struct Line
@@ -62,6 +64,7 @@ struct Circle
 bool lineCircleIntersect(const Line &line, const Circle &circle);
 Point linePerpendicular(const Line &line, const Point &point);
 bool lineIntersect(const Line &one, const Line &two);
+Point lineIntersectPoint(const Line &one, const Line &two);
 Point pointToLineDistance(const Point &point, const Line &line);
 //double dist(std::vector<Circle>::const_iterator one, std::vector<Circle>::const_iterator two);
 double dist(const Circle& one, const Circle& two);
